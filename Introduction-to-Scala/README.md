@@ -85,3 +85,64 @@ println(jackClubs + aceDiamonds)
 ```
 
 ![](scala_script.png)
+
+## Interpreter and Compiled Language
+
+Scala Application must be compiled explicited and run explicited.
+Scripts can be executed using scala command and it`ll be interpreted (it`ll be slower than compiled).
+
+Compiled >
+- No lag time as application is pre-compiled
+- Good for larger applications
+
+```
+object Game extends App {
+  println("test Game")
+}
+```
+
+`$scalac Game.scala`
+
+`$scala Game`
+
+Output > test Game
+
+## IDE
+
+You can work with Scala using shell scripting or an IDE, the most preferable IDE for Scala is Intellij IDEA.
+
+## SBT (Simple Build Tool)
+
+Most popular tool for building Scala Application. It compiles, run and test your Scala Application.
+
+## Scala on Jupyter Notebooks
+
+Scala also works on Jupyter Notebooks using Kernel Almond
+
+# Functions
+
+Functions are invoked with a list of arguments to produce a result.
+
+What are the parts of a function?
+
+- Parameter List
+- Body
+- Result Type
+
+Definition
+
+```
+// function body
+def bust(hand: Int): Boolean = {
+  hand > 21
+ }
+
+print(bust(20))
+print(bust(21))
+print(bust(1+4))
+// false
+// true
+// false
+```
+
+**functions in scala can receive other functions as arguments**
