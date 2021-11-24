@@ -146,3 +146,58 @@ print(bust(1+4))
 ```
 
 **functions in scala can receive other functions as arguments**
+
+# Arrays
+
+## Collections
+
+- Mutable collections
+  - can be updated or extended in place
+- Immutable collections
+  - never change
+ 
+ Array is a mutable sequence of objects that share the same type
+ 
+ `scala> val players = Array("Alex", "Chen", "Marta")`
+ OR
+ `scala> val players = new Array[String](3)`
+ OR
+ `scala> val player: Array[String] = new Array[String](3)`
+ 
+ Adding elements to Array:
+ ```
+ scala> players(0)="Guilherme"
+ scala> player(1)="Joao"
+ ```
+ 
+ Arrays have order and type defined!
+ 
+ **It`s recommended to use val with Array to be able to update the Array like above, but cannot reassign the variable with a new array like players= new Array[String](5)**
+ 
+ Scala nudges us towards immutability.
+ 
+ **The any supertype**
+ `scala> val mixedTypes = new Array[Any](3)`
+ `scala> mixedTypes(0) = 1`
+ `scala> mixedTypes(1)="Teste"`
+ 
+ ```
+ // Initialize player's hand and print out hands before each player hits
+hands(0) = tenClubs + fourDiamonds
+hands(1) = nineSpades + nineHearts
+hands(2) = twoClubs + threeSpades
+hands.foreach(println)
+
+// Add 5♣ to the first player's hand
+hands(0) = hands(0) + fiveClubs
+
+// Add Q♠ to the second player's hand
+hands(1)  = hands(1)  + queenSpades
+
+// Add K♣ to the third player's hand
+hands(2)  = hands(2)  + kingClubs
+
+// Print out hands after each player hits
+hands.foreach(println)
+ 
+ ```
