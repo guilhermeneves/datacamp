@@ -177,6 +177,7 @@ print(bust(1+4))
  Scala nudges us towards immutability.
  
  **The any supertype**
+ 
  `scala> val mixedTypes = new Array[Any](3)`
  `scala> mixedTypes(0) = 1`
  `scala> mixedTypes(1)="Teste"`
@@ -201,3 +202,198 @@ hands(2)  = hands(2)  + kingClubs
 hands.foreach(println)
  
  ```
+ 
+ ## Lists
+ 
+ Most common collection in scala. List is immutable sequence of objects with the same type.
+ 
+ List have a type parameter: 
+ 
+ `scala> val player = List("Alex", "Chen", "Marta")`
+ 
+ List has methods, like all of Scala collections.
+ - Method: a function that belongs to an object.
+
+Some list methods:
+- myList.drop()
+- myList.mkString('','')
+- myList.length
+- myList.reverse
+
+In order to prepend item to the beggining of a list just use double collon `::` called `cons` like:
+
+`scala> val players = List("Guilherme", "Pedro")`
+
+`scala> val newPlayers = "Master"::players`
+
+or you can change `val` to `var`, so you can add the values to the same variable.
+
+## Nil
+
+A common way to initialize lists is by using `Nil`, like:
+
+`scala> val players = "Alex"::"Chen"::"Marta":: Nil`
+
+## Concatenate Lists
+
+Using the `:::` operator you can concatenate lists, e.g:
+
+```
+val playersA = List("Sindhu", "Alex")
+val playersB = List("Chen", "Marta")
+val allPlayers = playersA ::: playersB
+println(playersA + " and " + playersB + " were not mutated,")
+println("which means " + allPlayers + " is a new list")
+```
+
+## Scala Static Type System
+
+
+- Type: restricts the possible values to which a variable can refer, or an expression can produce, at run time
+
+- Compile time: when source code is translated into machine code, i.e, code that a computer can read
+
+- Run time: when the program is executing commands (after compilation, if compiled)
+
+**Static Type Systems**: a Language is statically typed if the type of a variable is known at compile time. That is, types checked before run-time. like: C/C++, Fortran, Java and Scala
+
+*Pros*
+
+- Increased performance
+- Properties of your program verified (prove the absence of common type-related bugs)
+- Safe refactorings
+- Documentation in the form of type annotation (:Int in val fourHearts: Int = 4)
+
+*Cons*
+
+- It takes time to check types
+- Code is verbose 
+- The language is not flexible
+
+**Dynamic type systems**: A Language is dynamically types if types are checked on the fly. That is, types are checked during execution. (i.e runtime): Javascript, Python, Ruby, R.
+
+## Control Structures
+
+A control structure is a block of programming that analyses variables and chooses a direction in which to go based on given parameters. The term flow control details the direction the program takes (which way program control flows)
+
+`if`/`else`
+
+```
+val hand = 24
+if (hand > 21) {
+  println("this hand busts")
+}
+else {
+  println("not busts")
+}
+
+def maxHand(handA: Int, handB: Int): Int = {
+  if (handA > handB) handA
+  else handB
+
+// OR pay attention 100 limit char per line ** just a convention
+def maxHand(handA: Int, handB: Int): Int = {
+  if (handA > handB) handA else handB
+
+```
+
+**Using Else Ifs:**
+
+```
+val handA = 26
+val handB = 20
+
+if(bust(handA) & bust(handB)) println(0)
+else if(bust(handA)) println(handB)
+else if(bust(handB)) println(handA)
+else println(handB)
+
+val maxHand = if(handA > handB) handA else handB
+
+```
+
+```
+// Point value of a player's hand
+val hand = sevenClubs + kingDiamonds + threeSpades
+
+// Inform a player where their current hand stands
+val informPlayer: String = {
+  if(hand > 21)
+    "Bust! :("
+  else if(hand == 21)
+    "Twenty-One! :)"
+  else
+    "Hit or stay?"
+}
+
+// Print the message
+print(informPlayer)
+
+```
+
+```
+// Find the number of points that will cause a bust
+def pointsToBust(hand: Int): Int = {
+  // If the hand is a bust, 0 points remain
+  if(hand > 21)
+    0
+  // Otherwise, calculate the difference between 21 and the current hand
+  else
+    21 - hand
+}
+
+// Test pointsToBust with 10♠ and 5♣
+val myHandPointsToBust = pointsToBust(15)
+println(myHandPointsToBust)
+
+```
+
+## Other Control Structures
+
+Loop with while
+
+```
+var i = 0
+
+val numRepetitions = 3
+
+while (i < numRepetitions) {
+  println("Hip hip Hooray!")
+  i = i + 1
+}
+OR
+
+val newList = "Aha"::"haahhaa"::"asdas"::Nil
+
+var i = 0
+while (i < newList.length) {
+  println("hip hip hooray!")
+  i = i + 1
+}
+```
+
+# Functional Style
+
+Scala usually is functional but can also be imperative.
+1. Functions are first-class values
+2. Operations of a programa should map input values to output values rather than change data in place.
+
+Imperative means >
+- One command at a time
+- Iterate with loops
+- Mutate shared state (e.g., mutating variables out of scope)
+Ex: C, Java, Python
+
+## Foreach
+
+```
+val someNames = ("Guilherme", "Joao", "Jose")
+
+someNames.foreach(println)
+```
+
+**Side Effect**: should be avoided, code modyfing some variable outside of its local scope
+
+Imperative: `var`, `Side Effects`, `Unit`
+
+Functional: `val`, `No side Effects`, `Non-unit` value types: Int, Boolean, Double
